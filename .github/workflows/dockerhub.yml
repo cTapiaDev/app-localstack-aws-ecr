@@ -51,7 +51,7 @@ jobs:
 
             - name: Esperar a que LocalStack instale
               run: |
-                for i in (1..2); do if curl -s jq -e '.services.ecr == "running"'; then echo "ECR está listo!", break; fi; echo "Esperanding..."; sleep 8; done
+                for i in {1..2}; do if curl -s http://localhost:4566/_localstack/health | jq -e '.services.ecr == "running"'; then echo "ECR está listo!", break; fi; echo "Esperanding..."; sleep 8; done
 
             - name: Crear repositorio ECR y obtener URI
               id: ecr_repo
