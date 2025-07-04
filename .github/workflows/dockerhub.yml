@@ -71,7 +71,7 @@ jobs:
                 FULL_IMAGE_NAME="$ECR_REPO_URI:$IMAGE_TAG"
                 SIMPLE_KIND_NAME="app-localstack:latest"
 
-                docker build -t "$FULL_IMAGE_NAME" -t "$SIMPLE_KIND_NAME"
+                docker build -t "$FULL_IMAGE_NAME" -t "$SIMPLE_KIND_NAME" .
                 echo "kind_image_name=$SIMPLE_KIND_NAME" >> $GITHUB_OUTPUT
 
                 docker push "$FULL_IMAGE_NAME"
