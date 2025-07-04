@@ -54,7 +54,7 @@ jobs:
               run: |
                 REPO_JSON=$(awslocal ecr create-repository --repository-name repo-pipe-ecr --image-scanning-configuration scanOnPush=true)
 
-                URI=$(echo $REPO_JSON | jq -r '.repositories[0].repositoryUri // repository.repositoryUri')
+                URI=$(echo $REPO_JSON | jq -r '.repository.repositoryUri')
                 echo "uri=$URI" >> $GITHUB_OUTPUT
 
             - name: Construir la imagen al ECR LocalStack
