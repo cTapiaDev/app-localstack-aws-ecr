@@ -5,27 +5,27 @@ on:
         branches: ["main"]
 
 jobs:
-    # job-dockerhub:
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #         - name: Checkout del repo
-    #           uses: actions/checkout@v4
+    job-dockerhub:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout del repo
+              uses: actions/checkout@v4
 
-    #         - name: Iniciar sesión en Docker Hub
-    #           uses: docker/login-action@v3
-    #           with:
-    #             username: ${{ secrets.DOCKERHUB_USERNAME }}
-    #             password: ${{ secrets.DOCKERHUB_TOKEN }}
+            - name: Iniciar sesión en Docker Hub
+              uses: docker/login-action@v3
+              with:
+                username: ${{ secrets.DOCKERHUB_USERNAME }}
+                password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    #         - name: Construir y publicar
-    #           uses: docker/build-push-action@v6
-    #           with:
-    #             context: .
-    #             push: true
-    #             tags: ${{ secrets.DOCKERHUB_USERNAME }}/app-localstack:latest
+            - name: Construir y publicar
+              uses: docker/build-push-action@v6
+              with:
+                context: .
+                push: true
+                tags: ${{ secrets.DOCKERHUB_USERNAME }}/app-localstack:latest
 
     build-push-and-deploy:
-        # needs: job-dockerhub
+        needs: job-dockerhub
         runs-on: ubuntu-latest
 
         services:
